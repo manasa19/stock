@@ -1,0 +1,29 @@
+package com.stockAcc.Test;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+
+import com.stockAcc.Master.Testngmaster;
+
+public class testngstockcat extends Testngmaster
+{
+	@Test
+	public void stockacc_catcreation()
+	{
+		
+		
+	
+}
+			
+		
+			
+		
+		
+	
+
+

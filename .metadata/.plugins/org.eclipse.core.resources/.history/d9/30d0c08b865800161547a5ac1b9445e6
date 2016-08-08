@@ -1,0 +1,92 @@
+package com.stockAcc.Driver;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.Test;
+
+import com.stockAcc.Master.stockAcc1;
+
+public class keyworddriven {
+	
+	@Test
+	public void driver() throws IOException, InterruptedException
+	{  
+		stockAcc1 sa=new stockAcc1();
+		String res=null;
+		String xlpath="D:\\stock accounting\\StockAccounting\\src\\com\\stockAcc\\Testdata\\keyword.xlsx";
+		String xopath="D:\\stock accounting\\StockAccounting\\src\\com\\stockAcc\\Testdata\\keywordout.xlsx";
+		FileInputStream fi=new FileInputStream(xlpath);
+		XSSFWorkbook wb=new XSSFWorkbook();
+		XSSFSheet ws=wb.getSheet("TestCase");
+		XSSFSheet ws1=wb.getSheet("TestSteps");
+		int tcRc=ws.getLastRowNum();
+		int tsRc=ws.getLastRowNum();
+		for (int i = 1; i <=tcRc; i++)
+		{
+			String exec=ws.getRow(i).createCell(3).getStringCellValue();
+			if(exec.equalsIgnoreCase("Y"))
+			{
+				String tcId=ws.getRow(i).getCell(1).getStringCellValue();
+				for (int j = 0; j<=tsRc; j++)
+				{
+					String tstcId=ws.getRow(j).getCell(1).getStringCellValue();
+					if(tcId.equalsIgnoreCase(tstcId))
+					{
+						String kywrd=ws.getRow(j).getCell(1).getStringCellValue();
+						System.out.println(kywrd);
+						switch (kywrd)
+						{
+						
+						case "sLanch":
+						 res=sa.stockAcc_Launch("http://webapp.qedgetech.com");
+						break;
+						case "sLogin":
+						res=sa.stockAcc_Login("admin", "master");
+						break;
+						case "sSupplier":
+						res=sa.stockAcc_suppliercreation("dggggg", "xccxxxx", "sddddd", "sssss","s2wsvxxx","ssssxx", "x2sxwax", "12335455565", "ceece");	
+						break;
+						case "sLogout":
+						res=sa.stockAcc_Logout();
+						sa.stockAcc_Close();
+						break;
+						
+						default:
+							System.out.println("select a proper kywrd");
+							break;	
+						}
+						ws1.getRow(j).createCell(3).setCellValue(res);
+						if(!ws1.getRow(j).getCell(3).getStringCellValue().equalsIgnoreCase("bloked"))
+						{
+							ws.getRow(i).createCell(3).setCellValue("res");
+						}
+						else
+						{
+							ws.getRow(i).createCell(2).setCellValue("Fail");
+						}
+					}
+				}
+			}
+				else
+				{
+					ws.getRow(i).createCell(2).setCellValue("bloked");
+				}
+		
+		FileOutputStream fo=new FileOutputStream(xopath);
+		wb.write(fo);
+		wb.close();
+		}		
+		
+	}
+	
+	
+	
+	
+	
+
+}

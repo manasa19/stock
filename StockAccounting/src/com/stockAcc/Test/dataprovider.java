@@ -1,0 +1,48 @@
+package com.stockAcc.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class dataprovider {
+	public static WebDriver driver;
+@Test(dataProvider="data")
+
+	public void ktest(String br, String u)
+	{
+	if (br.equalsIgnoreCase("firefox"))
+	{
+		driver=new FirefoxDriver();
+	}
+	else if(br.equalsIgnoreCase("ie"))
+	{
+		System.setProperty("Webdriver.ie.driver", "D:\\stock accounting\\StockAccounting\\src\\com\\stockAcc\\jar\\IEDriverServer_Win32_2.53.1.zip");
+		driver=new InternetExplorerDriver();
+	}
+	driver.get(u);
+	driver.findElement(By.id("username")).clear();
+	driver.findElement(By.id("username")).sendKeys("admin");
+	driver.findElement(By.id("password")).clear();
+	driver.findElement(By.id("password")).sendKeys("master");
+	driver.findElement(By.id("btnsubmit")).click();
+	}
+  @DataProvider(parallel=true)
+    public Object[][] data()
+    {
+    	Object[][] d=new Object[2][2];
+    			
+    			d[0][0]="firefox";
+    			d[0][1]="http://webapp.qedgetech.com";
+    			
+    			d[1][0]="ie";
+    			d[1][1]="http://webapp.qedgetech.com";
+    		
+    			
+    			return d;
+    		}
+    	
+
+    }
+  

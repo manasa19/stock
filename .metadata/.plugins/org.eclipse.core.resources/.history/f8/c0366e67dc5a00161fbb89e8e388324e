@@ -1,0 +1,12 @@
+package com.stockAcc;
+
+import org.testng.annotations.Test;
+
+public class sampl12 {
+	@Test
+	public void samplew()
+	{
+		web
+	}
+
+}

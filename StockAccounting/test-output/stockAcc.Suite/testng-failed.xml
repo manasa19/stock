@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [stockAcc.Suite]">
+  <test name="Test(failed)">
+    <classes>
+      <class name="com.stockAcc.Test.testngstockitem">
+        <methods>
+          <include name="stockacc_stockitemcreation"/>
+        </methods>
+      </class> <!-- com.stockAcc.Test.testngstockitem -->
+      <class name="com.stockAcc.Test.testngsupplier">
+        <methods>
+          <include name="stockAcc_Login"/>
+          <include name="stockAcc_Logout"/>
+          <include name="stockAcc_Launch"/>
+          <include name="stockAcc_Close"/>
+        </methods>
+      </class> <!-- com.stockAcc.Test.testngsupplier -->
+      <class name="com.stockAcc.Test.testngstockcat">
+        <methods>
+          <include name="stockacc_catcreation"/>
+        </methods>
+      </class> <!-- com.stockAcc.Test.testngstockcat -->
+      <class name="com.stockAcc.Test.testnguom">
+        <methods>
+          <include name="stockacc_uomcreation"/>
+        </methods>
+      </class> <!-- com.stockAcc.Test.testnguom -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [stockAcc.Suite] -->
